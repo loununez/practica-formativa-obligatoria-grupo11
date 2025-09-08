@@ -7,44 +7,44 @@
     <h1>Práctica Formativa Obligatoria - Grupo 11</h1>
     <form id="inicio_sesion">
       <label for="usuario">Nombre de usuario </label><br>
-      <input type="text" id="usuario" name="nombre_usuario" placeholder="usuario@gmail.com" required><br>
+      <!-- se agregó un nuevo placeholder -->
+      <input type="text" id="usuario" name="nombre_usuario" placeholder="ejemplo@dominio.com" required><br>
 
       <label for="contraseña">Contraseña</label><br>
       <input type="password" id="contraseña" name="contraseña" required><br>
 
       <input type="submit" value="INGRESAR">
     </form>
-
     <script>
       // Capturar el formulario
-      const form = document.getElementById("formUsuario");
+      const form = document.getElementById("inicio_sesion");
 
       form.addEventListener("submit", function (event) {
         event.preventDefault(); // Evita recarga de la página
 
-      // Capturar valores
-      const usuario = document.getElementById("usuario").value;
-      const contraseña = document.getElementById("contraseña").value;
+        // Capturar valores
+        const usuario = document.getElementById("usuario").value;
+        const contraseña = document.getElementById("contraseña").value;
 
-      // Crear objeto AJAX
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://localhost:3000/api/usuarios", true);
-      xhr.setRequestHeader("Content-Type", "application/json");
+        // Crear objeto AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:3000/api/usuarios", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
 
-      // Manejo de la respuesta
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            console.log("Respuesta del backend:", xhr.responseText);
-            alert("Datos enviados correctamente");
-          } else {
-            console.error("Error en la petición:", xhr.statusText);
-            alert("Hubo un error al enviar los datos");
+        // Manejo de la respuesta
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              console.log("Respuesta del backend:", xhr.responseText);
+              alert("Datos enviados correctamente");
+            } else {
+              console.error("Error en la petición:", xhr.statusText);
+              alert("Hubo un error al enviar los datos");
+            }
           }
-        }
-      };
+        };
 
-      // Enviar datos en formato JSON
+        // Enviar datos en formato JSON
         const data = JSON.stringify({
           usuario: usuario,
           contraseña: contraseña,
@@ -68,7 +68,6 @@
     Content-Type: application/json
 
     Respuesta esperada (como ejemplo):
-    {
       "status": "ok",
       "message": "Usuario recibido correctamente"
     }
@@ -76,3 +75,4 @@
 
   </body>
 </html>
+
